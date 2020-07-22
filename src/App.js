@@ -1,6 +1,7 @@
 import React from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AnimatePresence } from 'framer-motion';
 //Pages
 import Home from "./pages/home";
 import Model from "./pages/model";
@@ -20,7 +21,10 @@ function App() {
       <Header />
       <Route
         render={({ location }) => (
-          <Switch location={location} key={location.pathname}>
+          <AnimatePresence 
+          initial={false} 
+          exitBeforeEnter>
+            <Switch location={location} key={location.pathname}>
             <Route
               exact
               path='/'
@@ -32,6 +36,7 @@ function App() {
               render={() => <Model imageDetails={imageDetails} />}
             />
           </Switch>
+          </AnimatePresence>
         )}
       />
     </Router>
